@@ -1,6 +1,6 @@
 import json
 
-with open('D:\\Uni\\Year2\\Linear\\oil.json', 'r') as file:
+with open('oil.json', 'r') as file:
     oil_data = json.load(file)
     
 oil_prices = [
@@ -12,7 +12,21 @@ oil_prices = [
 
 oil_prices = [float(price) for price in oil_prices]
 
+
 #--------------------------------------------------------------------------------------#
+
+with open('gold.json' , 'r') as file2:
+    gold_data = json.load(file2)
+    
+oil_dates = set(
+    item["Back to Contents"] for item in oil_data 
+    if any(year in item["Back to Contents"] for year in ["2021", "2022", "2023"])
+)
+gold_price = [
+    float(i["USD"].replace(',', ''))
+    for i in gold_data
+    if i["date"] in oil_dates
+]
 
 
 
